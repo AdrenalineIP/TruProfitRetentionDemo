@@ -63,9 +63,9 @@
                   <p>Choose Your Team:</p>
                   <p><a href="JavaScript: teamChoose('Bears')">Bears</a></p>
                   <p><a href="JavaScript: teamChoose('Cowboys')">Dallas Cowboys</a></p>
-                  <p><a href="JavaScript: teamChoose('Patriots')">N.E. Patriots</a></p>
-                  <p><a href="JavaScript: teamChoose('Broncos')">Denver Broncos</a></p>
                   <p><a href="JavaScript: teamChoose('Commanders')">Washington Commanders</a></p>
+                  <p><a href="JavaScript: teamChoose('Man Utd')">Man Utd</a></p>
+                  <p><a href="JavaScript: teamChoose('Liverpool')">Liverpool</a></p>
                   <p><a href="JavaScript: teamChoose('....')">None Of The Above</a></p>
                 </div>
                 <div class="modal-footer">
@@ -120,28 +120,36 @@
             <h3> Original Odds </h3>
             <div class="container">
                 <div class="row">
+                    <div class="col"><strong>Sport</strong></div>
                     <div class="col"><strong>Team 1</strong></div>
                     <div class="col"><strong>Team 2</strong></div>
                     <div class="col"><strong>Odds 1</strong></div>
+                    <div class="col"><strong>Odds X</strong></div>
                     <div class="col"><strong>Odds 2</strong></div>
                 </div>
                 <div class="row" id="match-0">
-                    <div class="col" id="match-0-1">Bears</div>
-                    <div class="col" id="match-0-2">Titans</div>
+                    <div class="col" id="match-0-sp"></div>
+                    <div class="col" id="match-0-1"></div>
+                    <div class="col" id="match-0-2"></div>
                     <div class="col" id="match-0-3"></div>
                     <div class="col" id="match-0-4"></div>
+                    <div class="col" id="match-0-5"></div>
                 </div>
                 <div class="row" id="match-1">
-                    <div class="col" id="match-1-1">Vikings</div>
-                    <div class="col" id="match-1-2">Commanders</div>
+                    <div class="col" id="match-1-sp"></div>
+                    <div class="col" id="match-1-1"></div>
+                    <div class="col" id="match-1-2"></div>
                     <div class="col" id="match-1-3"></div>
                     <div class="col" id="match-1-4"></div>
+                    <div class="col" id="match-1-5"></div>
                 </div>
                 <div class="row" id="match-2">
-                    <div class="col" id="match-2-1">Cowboys</div>
-                    <div class="col" id="match-2-2">Packers</div>
+                    <div class="col" id="match-2-sp"></div>
+                    <div class="col" id="match-2-1"></div>
+                    <div class="col" id="match-2-2"></div>
                     <div class="col" id="match-2-3"></div>
                     <div class="col" id="match-2-4"></div>
+                    <div class="col" id="match-2-5"></div>
                 </div>
             </div>
     
@@ -155,28 +163,36 @@
             
             <div class="container">
                 <div class="row">
+                    <div class="col"><strong>Sport</strong></div>
                     <div class="col"><strong>Team 1</strong></div>
                     <div class="col"><strong>Team 2</strong></div>
                     <div class="col"><strong>Odds 1</strong></div>
+                    <div class="col"><strong>Odds X</strong></div>
                     <div class="col"><strong>Odds 2</strong></div>
                 </div>
                 <div class="row" id="adj-match-0">
-                    <div class="col" id="adj-match-0-1">Bears</div>
-                    <div class="col" id="adj-match-0-2">Titans</div>
+                    <div class="col" id="adj-match-0-sp"></div>
+                    <div class="col" id="adj-match-0-1"></div>
+                    <div class="col" id="adj-match-0-2"></div>
                     <div class="col" id="adj-match-0-3"></div>
                     <div class="col" id="adj-match-0-4"></div>
+                    <div class="col" id="adj-match-0-5"></div>
                 </div>
                 <div class="row" id="adj-match-1">
-                    <div class="col" id="adj-match-1-1">Vikings</div>
-                    <div class="col" id="adj-match-1-2">Commanders</div>
+                    <div class="col" id="adj-match-1-sp"></div>
+                    <div class="col" id="adj-match-1-1"></div>
+                    <div class="col" id="adj-match-1-2"></div>
                     <div class="col" id="adj-match-1-3"></div>
                     <div class="col" id="adj-match-1-4"></div>
+                    <div class="col" id="adj-match-1-5"></div>
                 </div>
                 <div class="row" id="adj-match-2">
-                    <div class="col" id="adj-match-2-1">Cowboys</div>
-                    <div class="col" id="adj-match-2-2">Packers</div>
+                    <div class="col" id="adj-match-2-sp"></div>
+                    <div class="col" id="adj-match-2-1"></div>
+                    <div class="col" id="adj-match-2-2"></div>
                     <div class="col" id="adj-match-2-3"></div>
                     <div class="col" id="adj-match-2-4"></div>
+                    <div class="col" id="adj-match-2-5"></div>
                 </div>
             </div>
             
@@ -187,10 +203,31 @@
           <div class="row">
             
             <div class="col">
-                <div class="alert alert-secondary" role="alert" style="display: none;" id="faveteam"></div>
+                <div class="row">
+                    <div class="col">
+                        <div class="alert alert-secondary" role="alert">In this example, the user has a favorite team set. Please select a team below to see how this updates.</div>
+                        
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="alert alert-secondary" role="alert" style="display: none;" id="faveteam"></div>
+                    </div>
+                </div>
+                
             </div>    
             <div class="col-sm">
-                <div class="alert alert-secondary" role="alert" style="display: none;" id="demomode"></div>
+                <div class="row">
+                    <div class="col">
+                        <div class="alert alert-secondary" role="alert">There are many suggestions of ways to show this to your customer, you can see more below by clicking on Choose.</div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="alert alert-secondary" role="alert" style="display: none;" id="demomode"></div>
+                    </div>
+                </div>
+                
             </div>
           </div>
           <div class="row">
