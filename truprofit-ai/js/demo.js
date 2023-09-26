@@ -496,9 +496,10 @@ function fireOnReady() {
 }
 
 function schemeChoose(chosenMode) {
+    clearTimeout(rotate);
     theMode = chosenMode;
     if(theMode == "Maximum") {
-        currBoost = 0.8;
+        currBoost = 0.08;
         currThreeBoost = 0.04;
     } else if(theMode == "Medium") {
         currBoost = 0.04;
