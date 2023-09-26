@@ -418,9 +418,10 @@ function fireOnReady() {
         if(odds2 !== null) {
             odds2 = (Math.round(odds2 * 100) / 100).toFixed(2); 
             $('#match-'+j+'-4').text(odds2);
-            $('#match-'+j+'-4').show();
             $('#match-hd-4').show();
             $('#adj-match-hd-4').show();
+            $('#match-'+j+'-4').show();
+            $('#adj-match-'+j+'-4').show();
         } else {
             $('#match-hd-4').hide();
             $('#adj-match-hd-4').hide();
