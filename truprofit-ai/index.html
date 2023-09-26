@@ -5,7 +5,7 @@
  
     <!-- Optional theme -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="../css/styles.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
@@ -24,7 +24,7 @@
         </div>
         <div class="row">
             <div class="col"><img src='https://images.squarespace-cdn.com/content/v1/5f2874d5e05b446af620bc0f/0fb77c18-f57b-43ea-bcfa-2e0e4faafc68/Adrenaline+Logo%403x.png?format=1500w' /></div>
-            <div class="col"><h1> TruProfitAI Retention - Demo </h1></div>
+            <div class="col"><h1> TruProfitAI - Demo </h1></div>
         </div>
         
         <div class="row">
@@ -70,17 +70,17 @@
             <div class="modal-dialog" role="document">
               <div class="modal-content">
                 <div class="modal-header">
-                  <h5 class="modal-title">Demo Mode Choice</h5>
+                  <h5 class="modal-title">Demo Mode - Choose Adjustment Model</h5>
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                   </button>
                 </div>
                 <div class="modal-body">
-                  <p>Choose the mode to display:</p>
-                  <p><a href="JavaScript: modeChoose('highlight')">Highlight</a></p>
-                  <p><a href="JavaScript: modeChoose('xbets')">X Bets Left At</a></p>
-                  <p><a href="JavaScript: modeChoose('crossedout')">Crossed Out plus Highlight</a></p>
-                  <p><a href="JavaScript: modeChoose('banner')">Banner plus Highlight</a></p>
+                  <p>Choose the adjustment type:</p>
+                  <p><a href="JavaScript: schemeChoose('Maximum')">Maximum Adjustment</a></p>
+                  <p><a href="JavaScript: schemeChoose('Medium')">Medium Adjustment</a></p>
+                  <p><a href="JavaScript: schemeChoose('Lowest')">Lowest Adjustment</a></p>
+                  
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
@@ -110,12 +110,12 @@
           </div>
           <div class="row">
             <div class="col">
-                <div class="alert alert-secondary" role="alert">This demo shows a simulation of odds being updated. At the top there are the original odds, and below are where the odds are adjusted to boost retention.</div>
+                <div class="alert alert-secondary" role="alert">TruProfitAI uses our advanced modelling to understand user behavior. In this demo, we focus on a bettor's favorite team.</div>
             </div>
         </div>
         <div class="row">
             <div class="col">
-                <div class="alert alert-secondary" role="alert">For simplicity, we are adjusting odds for a user's favorite team, giving them a boost where their team's odds display.</div>
+                <div class="alert alert-secondary" role="alert">We are adjusting odds for a user's favorite team, adjusting odds where the user is likely to bet on their favorite team.</div>
             </div>
         </div>
           <div  class="row" id="originalOdds">
@@ -126,7 +126,7 @@
                     <div class="col"><strong>Team 1</strong></div>
                     <div class="col"><strong>Team 2</strong></div>
                     <div class="col"><strong>Odds 1</strong></div>
-                    <div class="col" id="match-hd-4"><strong>Odds X</strong></div>
+                    <div class="col" id="match-hd-4" style="display: none;"><strong>Odds X</strong></div>
                     <div class="col"><strong>Odds 2</strong></div>
                 </div>
                 <div class="row" id="match-0">
@@ -134,7 +134,7 @@
                     <div class="col" id="match-0-1"></div>
                     <div class="col" id="match-0-2"></div>
                     <div class="col" id="match-0-3"></div>
-                    <div class="col" id="match-0-4"></div>
+                    <div class="col" id="match-0-4" style="display: none;"></div>
                     <div class="col" id="match-0-5"></div>
                 </div>
                 <div class="row" id="match-1">
@@ -142,7 +142,7 @@
                     <div class="col" id="match-1-1"></div>
                     <div class="col" id="match-1-2"></div>
                     <div class="col" id="match-1-3"></div>
-                    <div class="col" id="match-1-4"></div>
+                    <div class="col" id="match-1-4" style="display: none;"></div>
                     <div class="col" id="match-1-5"></div>
                 </div>
                 <div class="row" id="match-2">
@@ -150,7 +150,7 @@
                     <div class="col" id="match-2-1"></div>
                     <div class="col" id="match-2-2"></div>
                     <div class="col" id="match-2-3"></div>
-                    <div class="col" id="match-2-4"></div>
+                    <div class="col" id="match-2-4" style="display: none;"></div>
                     <div class="col" id="match-2-5"></div>
                 </div>
             </div>
@@ -164,7 +164,7 @@
         </div>
           <div class="row">
             <div class="col">
-                <div class="alert alert-secondary" role="alert">Shown below are the adjusted personalized odds from TruProfitAI, showing adjustments based on our knowledge and understanding of the user.</div>
+                <div class="alert alert-secondary" role="alert">Shown below are the adjusted personalized odds from TruProfitAI, these will show adjustments based on user behavior.</div>
             </div>
         </div>
         <div class="row">
@@ -188,19 +188,19 @@
                     
                 </div>
                 <div class="row">
-                    <div class="col"><strong>Sport</strong></div>
-                    <div class="col"><strong>Team 1</strong></div>
-                    <div class="col"><strong>Team 2</strong></div>
-                    <div class="col"><strong>Odds 1</strong></div>
-                    <div class="col" id="adj-match-hd-4"><strong>Odds X</strong></div>
-                    <div class="col"><strong>Odds 2</strong></div>
-                </div>
+                  <div class="col"><strong>Sport</strong></div>
+                  <div class="col"><strong>Team 1</strong></div>
+                  <div class="col"><strong>Team 2</strong></div>
+                  <div class="col"><strong>Odds 1</strong></div>
+                  <div class="col" id="adj-match-hd-4" style="display: none;"><strong>Odds X</strong></div>
+                  <div class="col"><strong>Odds 2</strong></div>
+              </div>
                 <div class="row" id="adj-match-0">
                     <div class="col" id="adj-match-0-sp"></div>
                     <div class="col" id="adj-match-0-1"></div>
                     <div class="col" id="adj-match-0-2"></div>
                     <div class="col" id="adj-match-0-3"></div>
-                    <div class="col" id="adj-match-0-4"></div>
+                    <div class="col" id="adj-match-0-4" style="display: none;"></div>
                     <div class="col" id="adj-match-0-5"></div>
                 </div>
                 <div class="row" id="adj-match-1">
@@ -208,7 +208,7 @@
                     <div class="col" id="adj-match-1-1"></div>
                     <div class="col" id="adj-match-1-2"></div>
                     <div class="col" id="adj-match-1-3"></div>
-                    <div class="col" id="adj-match-1-4"></div>
+                    <div class="col" id="adj-match-1-4" style="display: none;"></div>
                     <div class="col" id="adj-match-1-5"></div>
                 </div>
                 <div class="row" id="adj-match-2">
@@ -216,7 +216,7 @@
                     <div class="col" id="adj-match-2-1"></div>
                     <div class="col" id="adj-match-2-2"></div>
                     <div class="col" id="adj-match-2-3"></div>
-                    <div class="col" id="adj-match-2-4"></div>
+                    <div class="col" id="adj-match-2-4" style="display: none;"></div>
                     <div class="col" id="adj-match-2-5"></div>
                 </div>
             </div>
@@ -244,7 +244,7 @@
             <div class="col-sm">
                 <div class="row">
                     <div class="col">
-                        <div class="alert alert-secondary" role="alert">There are many suggestions of ways to show this to your customer, you can see more below by clicking on Choose.</div>
+                        <div class="alert alert-secondary" role="alert">There are different adjustment models available, Click Choose to see.</div>
                     </div>
                 </div>
                 <div class="row">

@@ -1,9 +1,12 @@
 let rotate;
+let adjustment = 0.05;
 let numBetsLeft = Math.floor(Math.random() * 5)+2;
-let currBoost = 0.05;
+let currBoost = 0.02;
+let currThreeBoost = 0.01;
 let currIndex = 0;
 let myTeam = "Bears";
-let demoMode = "xbets";
+let demoMode = "highlight";
+let theMode = "Minimum";
 let userOdds1 = [
         {
             "sport": "American Football (NFL)",
@@ -140,8 +143,8 @@ let userodds3 = [
             "home": "Liverpool",
             "away": "Man City",
             "odds1": 2.4,
-            "odds2": 2.87,
-            "odds3": 2.87
+            "odds2": 2.86,
+            "odds3": 2.88
         },
         {
             "sport": "Soccer",
@@ -265,6 +268,10 @@ let userodds3 = [
         }
     ];       
 const odds = [
+    userOdds6,
+    userOdds7,
+    userOdds9,
+    userOdds10,
     userOdds1,
     userodds3,
     userOdds3,
@@ -345,7 +352,7 @@ function setMyTeam(teamName) {
     }
     var theElement = document.getElementById('demomode');
     if(theElement) {
-        theElement.innerHTML = '<button type="button" class="btn btn-info btn-med" data-toggle="modal" data-target="#myModal2">Choose</button>';
+        theElement.innerHTML = '<strong>Adjustment Mode:</strong>&nbsp;'+theMode+'&nbsp;&nbsp;<button type="button" class="btn btn-info btn-med" data-toggle="modal" data-target="#myModal2">Choose</button>';
         theElement.style.display = 'block';  
     }
 }
@@ -384,10 +391,11 @@ function fireOnReady() {
     let hasAdjust = false;
     for(let j = 0; j < thisOdd.length; j++) {
         const theOdd = thisOdd[j];
-        console.log("We have "+theOdd['away']+' @ '+theOdd['home']+' with 1='+theOdd['odds1']+' and 2='+theOdd['odds3']);
+        
+        //console.log("We have "+theOdd['away']+' @ '+theOdd['home']+' with 1='+theOdd['odds1']+' and 2='+theOdd['odds3']);
         var team1 = $('#match-'+j+'-1').text();
         var team2 = $('#match-'+j+'-2').text();
-        console.log('team1='+team1);
+        //console.log('team1='+team1);
         let odds1 = theOdd['odds1'];
         let odds2 = theOdd['odds2'];
         let odds3 = theOdd['odds3'];
@@ -408,7 +416,6 @@ function fireOnReady() {
         $('#adj-match-'+j+'-1').text(theOdd['home']);
         $('#adj-match-'+j+'-2').text(theOdd['away']);
         if(odds2 !== null) {
-            
             odds2 = (Math.round(odds2 * 100) / 100).toFixed(2); 
             $('#match-'+j+'-4').text(odds2);
             $('#match-'+j+'-4').show();
@@ -420,45 +427,44 @@ function fireOnReady() {
             $('#match-'+j+'-4').hide();
             $('#adj-match-'+j+'-4').hide();
         }
-        if(team1 == myTeam) {
+
+        if(team1 == myTeam || team2 == myTeam) {
             hasAdjust = true;
-            odds1adj += currBoost;
-            setAdjustedOdds('#adj-match-'+j+'-3', odds1adj, odds1)
+            newInfo = processAdjustment(odds1, odds2, odds3);
+            console.dir(newInfo);
+            odds1adj = newInfo['odd1'];
+            if(odds2 !== null) {
+                hasOdds2 = true;
+                odds2adj = newInfo['odd2'];
+            }
+            
+            odds3adj = newInfo['odd3'];
+            //odds1adj += currBoost;
+            setAdjustedOdds('#adj-match-'+j+'-3', odds1adj, odds1);
+            
+            setAdjustedOdds('#adj-match-'+j+'-5', odds3adj, odds3);
             //$('#adj-match-'+j+'-3').text(odds1adj);
             animator('#adj-match-'+j+'-3');
+            animator('#adj-match-'+j+'-5');
+            if(odds2 != null) {
+                setAdjustedOdds('#adj-match-'+j+'-4', odds2adj, odds2);
+                animator('#adj-match-'+j+'-4');
+            }
         } else {
             $('#adj-match-'+j+'-3').text(odds1);
             $('#adj-match-'+j+'-3').css("background-color", "#cccccc");
-        }
-        if(team2 == myTeam) {
-            hasAdjust = true;
-            odds3adj += currBoost;
-            setAdjustedOdds('#adj-match-'+j+'-5', odds3adj, odds3)
-            //$('#adj-match-'+j+'-3').text(odds1adj);
-            animator('#adj-match-'+j+'-5');
-        } else {
             $('#adj-match-'+j+'-5').text(odds3);
             $('#adj-match-'+j+'-5').css("background-color", "#cccccc");
+            if(odds2 != null) {
+                $('#adj-match-'+j+'-4').text(odds2);
+                $('#adj-match-'+j+'-4').css("background-color", "#cccccc");
+                $('#adj-match-'+j+'-4').show();
+            } else {
+                $('#adj-match-'+j+'-4').hide();
+            }
         }
-        if(odds2 !== null && (team2 == myTeam || team1 == myTeam) ) {
-            odds2adj += currBoost;
-            hasOdds2 = true;
-        }
-        if(odds2 !== null) {
-            $('#match-'+j+'-4').text(odds2);
-            $('#adj-match-'+j+'-4').text(odds2);
-            $('#adj-match-'+j+'-4').css("background-color", "#cccccc");
-            //$('#adj-match-'+j+'-3').text(odds1adj);
-        } else {
-            $('#match-'+j+'-4').text("");
-            $('#match-'+j+'-4').css("background-color", "#cccccc");
-            $('#adj-match-'+j+'-4').text("");
-            $('#adj-match-'+j+'-4').css("background-color", "#cccccc");
-        }
-        if(odds2 !== null && (team2 == myTeam || team1 == myTeam) ) {
-            setAdjustedOdds('#adj-match-'+j+'-4', odds2adj, odds2)
-            animator('#adj-match-'+j+'-4');
-        }
+        
+        
         if(demoMode == "banner") {
             $("#theBanner").show();
             $("#theBannerInfo").show();
@@ -469,16 +475,13 @@ function fireOnReady() {
     }
     let demoText = "";
     const boost = (Math.round(currBoost * 100) / 100).toFixed(2);
-    if(demoMode == "xbets" && hasAdjust && hasOdds2) {
-        demoText = "In this example, we choose to show a boost on the X part of the bet also, to show that the user still thinks their team will not lose.";
+    if(hasAdjust && hasOdds2) {
+        demoText = "We adjust all sides of the bet, maintaining the VIG or Margin.";
+    } else if (hasAdjust) {
+        demoText = "There's a corresponding adjustment on each side of the bet to maintain the VIG or Margin.";
+    } else {
+        demoText = "Since the favorite team isn't showing, we don't adjust any bets. The VIG or Margin is maintained.";
     }
-    else if(demoMode == "xbets" && hasAdjust) {
-        demoText = "Currently, the simulation is showing a certain number of bets available at a certain boost price (currently set at "+boost+")";
-    } else if(demoMode == "crossedout" && hasAdjust) {
-        demoText = "Another approach is to show the old odds as a crossed out line, showing the user that they're being offered improved odds";
-    } else if(demoMode == "banner" && hasAdjust) {
-        demoText = "You may wish to visually show the user that they are valued, and so a banner may be appropriate to show them that they are being offered improved odds";
-    } 
 
     if(demoText !== "") {
         $("#demoInfo").text(demoText);
@@ -490,6 +493,70 @@ function fireOnReady() {
         //Your stuff
         callback();
     }, 2500);
+}
+
+function schemeChoose(chosenMode) {
+    theMode = chosenMode;
+    if(theMode == "Maximum") {
+        currBoost = 0.8;
+        currThreeBoost = 0.04;
+    } else if(theMode == "Medium") {
+        currBoost = 0.04;
+        currThreeBoost = 0.02;
+    } else {
+        currBoost = 0.02;
+        currThreeBoost = 0.01;
+    }
+    fireDocReady();
+    $('#myModal2').hide();
+    $('.modal-backdrop').hide();
+}
+
+function processAdjustment(odd1, odd2, odd3) {
+    console.log("ENTER: odd1 is "+odd1+" odd2 is "+odd2+" and odd3 is "+odd3);
+    if(odd2 === null) {
+        // it's a 2 way bet
+        const odd1prob = 1 / odd1;
+        if(odd1prob >= 50) {
+            odd1 = (odd1 * 1) - currBoost;
+            odd3 = (odd3 * 1) + currBoost;
+        } else {
+            odd1 = (odd1 * 1) + currBoost;
+            odd3 = (odd3 * 1) - currBoost;
+        }
+        console.log("odd1 is "+odd1+" odd2 is "+odd2+" and odd3 is "+odd3);
+        odd1 = (Math.round(odd1 * 100) / 100).toFixed(2);
+        odd3 = (Math.round(odd3 * 100) / 100).toFixed(2);
+        console.log(" ** odd1 is "+odd1+" odd2 is "+odd2+" and odd3 is "+odd3);
+    } else {
+        // it's a 3 way
+        const odd1prob = 1 / odd1;
+        const odd2prob = 1 / odd2;
+        const odd3prob = 1 / odd3;
+        if (odd1prob >= odd2prob && odd1prob >= odd3prob) {
+            odd1 = (odd1 * 1) - currThreeBoost;
+            odd2 = (odd2 * 1)  + currBoost;
+            odd3 = (odd3 * 1)  + currBoost;
+        } else if (odd3prob >= odd2prob && odd3prob >= odd1prob) {
+            odd3 = (odd3 * 1) - currThreeBoost;
+            odd2 = (odd2 * 1)  + currBoost;
+            odd1 = (odd1 * 1)  + currBoost;
+        } else {
+            odd2 = (odd2 * 1) - currThreeBoost;
+            odd3 = (odd3 * 1)  + currBoost;
+            odd1 = (odd1 * 1)  + currBoost;
+        }
+        console.log("odd1 is "+odd1+" odd2 is "+odd2+" and odd3 is "+odd3);
+        odd1 = (Math.round(odd1 * 100) / 100).toFixed(2);
+        odd2 = (Math.round(odd2 * 100) / 100).toFixed(2);
+        odd3 = (Math.round(odd3 * 100) / 100).toFixed(2);
+        console.log(" ** odd1 is "+odd1+" odd2 is "+odd2+" and odd3 is "+odd3);
+    }
+    return {
+        "odd1": odd1,
+        "odd2": odd2,
+        "odd3": odd3
+    };
 }
 
 function callback() {
@@ -520,12 +587,7 @@ function setAdjustedOdds(theElement, theOddsShown, oldOdds) {
                 }
             }
         }
-        let odds = theOddsShown;
-        //theOddsShown = numBetsLeft+" bets left at "+theOddsShown;
-        theOddsShown = '<div class="row"><div class="col-sm justify-content-center">';
-        theOddsShown += '<div class="row"><div class="col-sm justify-content-center">'+numBetsLeft+' bets left at '+'</div></div>';
-        theOddsShown += '<div class="row"><div class="col-sm justify-content-center">'+odds+'</div></div>';
-        theOddsShown += '</div></div>';
+        theOddsShown = numBetsLeft+" bets left at "+theOddsShown;
     } else if(demoMode == "banner") {
         theOddsShown = "<strike>"+oldOdds+"</strike>&nbsp;"+theOddsShown;
     } else if(demoMode == "crossedout") {
