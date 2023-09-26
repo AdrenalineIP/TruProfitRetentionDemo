@@ -453,8 +453,10 @@ function fireOnReady() {
         }
         if(demoMode == "banner") {
             $("#theBanner").show();
+            $("#theBannerInfo").show();
         } else {
             $("#theBanner").hide();
+            $("#theBannerInfo").hide();
         }
     }
     let demoText = "";

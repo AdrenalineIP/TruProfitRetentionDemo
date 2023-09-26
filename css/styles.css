@@ -7,4 +7,8 @@ body {
     background-color: #cccccc;
     margin-left: 25px;
     margin-top: 10px;
-    }
+}
+
+.hasBorder {
+    border: 1px solid black;
+}
