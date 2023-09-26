@@ -279,12 +279,6 @@ const odds = [
     userOdds3,
     userOdds4,
     userOdds1,
-    userOdds4,
-    userodds3,
-    userOdds5,
-    userOdds1,
-    userOdds3,
-    userodds3,
     userOdds6,
     userOdds7,
     userOdds8,
@@ -445,6 +439,7 @@ function fireOnReady() {
         if(odds2 !== null) {
             $('#match-'+j+'-4').text(odds2);
             $('#adj-match-'+j+'-4').text(odds2);
+            $('#adj-match-'+j+'-4').css("background-color", "#cccccc");
             //$('#adj-match-'+j+'-3').text(odds1adj);
         } else {
             $('#match-'+j+'-4').text("");
