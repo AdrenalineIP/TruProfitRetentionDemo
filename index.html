@@ -1,0 +1,209 @@
+<html>
+<head>
+    <title> Sports Book Demo </title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+ 
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.13.2/jquery-ui.min.js" integrity="sha512-57oZ/vW8ANMjR/KQ6Be9v/+/h6bq9/l3f0Oc7vn6qMqyhvPd1cvKBRWWpzu0QoneImqr2SkmO4MSqU+RpHom3Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="js/demo.js"></script>
+    <script language="JavaScript">
+        document.addEventListener("DOMContentLoaded", fireDocReady);
+
+    </script>
+</head>
+<body>
+    <div class="container theContainer">
+        <div class="row">
+            
+            <div class="col">&nbsp;</div>
+        </div>
+        <div class="row">
+            <div class="col"><img src='https://images.squarespace-cdn.com/content/v1/5f2874d5e05b446af620bc0f/0fb77c18-f57b-43ea-bcfa-2e0e4faafc68/Adrenaline+Logo%403x.png?format=1500w' /></div>
+            <div class="col"><h1> Retention Odds Demo </h1></div>
+        </div>
+        
+        <div class="row">
+            
+            <div class="col">&nbsp;</div>
+        </div>
+            
+        <div class="row">
+            <div class="col">
+                
+                <div class="alert alert-success" role="alert" style="display: none;" id="theBanner">
+                    <p>Thank you for being a valued user, we have given you better odds on your favorite team.</p>
+                </div>
+            </div>
+            
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="alert alert-warning" role="alert" style="display: none;" id="odds">
+            
+                </div>
+            </div>
+            
+        </div>
+    
+        <div id="myModal" name="myModal" class="modal" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title">Choose My Team</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <p>Choose Your Team:</p>
+                  <p><a href="JavaScript: teamChoose('Bears')">Bears</a></p>
+                  <p><a href="JavaScript: teamChoose('Cowboys')">Dallas Cowboys</a></p>
+                  <p><a href="JavaScript: teamChoose('Patriots')">N.E. Patriots</a></p>
+                  <p><a href="JavaScript: teamChoose('Broncos')">Denver Broncos</a></p>
+                  <p><a href="JavaScript: teamChoose('Commanders')">Washington Commanders</a></p>
+                  <p><a href="JavaScript: teamChoose('....')">None Of The Above</a></p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div id="myModal2" name="myModal2" class="modal" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title">Demo Mode</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <p>Choose Your Team:</p>
+                  <p><a href="JavaScript: modeChoose('highlight')">Highlight</a></p>
+                  <p><a href="JavaScript: modeChoose('xbets')">X Bets Left At</a></p>
+                  <p><a href="JavaScript: modeChoose('crossedout')">Crossed Out plus Highlight</a></p>
+                  <p><a href="JavaScript: modeChoose('banner')">Banner plus Highlight</a></p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div id="myModal3" name="myModal3" class="modal" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title">TruProfit Information</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <div id="bodycopy">
+
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div  class="row" id="originalOdds">
+            <h3> Original Odds </h3>
+            <div class="container">
+                <div class="row">
+                    <div class="col"><strong>Team 1</strong></div>
+                    <div class="col"><strong>Team 2</strong></div>
+                    <div class="col"><strong>Odds 1</strong></div>
+                    <div class="col"><strong>Odds 2</strong></div>
+                </div>
+                <div class="row" id="match-0">
+                    <div class="col" id="match-0-1">Bears</div>
+                    <div class="col" id="match-0-2">Titans</div>
+                    <div class="col" id="match-0-3"></div>
+                    <div class="col" id="match-0-4"></div>
+                </div>
+                <div class="row" id="match-1">
+                    <div class="col" id="match-1-1">Vikings</div>
+                    <div class="col" id="match-1-2">Commanders</div>
+                    <div class="col" id="match-1-3"></div>
+                    <div class="col" id="match-1-4"></div>
+                </div>
+                <div class="row" id="match-2">
+                    <div class="col" id="match-2-1">Cowboys</div>
+                    <div class="col" id="match-2-2">Packers</div>
+                    <div class="col" id="match-2-3"></div>
+                    <div class="col" id="match-2-4"></div>
+                </div>
+            </div>
+    
+    
+          </div>
+          <div class="row">
+            <div class="col"><hr /></div>
+          </div>
+          <div class="row" id="newOdds">
+            <h3> Retention Odds </h3>
+            
+            <div class="container">
+                <div class="row">
+                    <div class="col"><strong>Team 1</strong></div>
+                    <div class="col"><strong>Team 2</strong></div>
+                    <div class="col"><strong>Odds 1</strong></div>
+                    <div class="col"><strong>Odds 2</strong></div>
+                </div>
+                <div class="row" id="adj-match-0">
+                    <div class="col" id="adj-match-0-1">Bears</div>
+                    <div class="col" id="adj-match-0-2">Titans</div>
+                    <div class="col" id="adj-match-0-3"></div>
+                    <div class="col" id="adj-match-0-4"></div>
+                </div>
+                <div class="row" id="adj-match-1">
+                    <div class="col" id="adj-match-1-1">Vikings</div>
+                    <div class="col" id="adj-match-1-2">Commanders</div>
+                    <div class="col" id="adj-match-1-3"></div>
+                    <div class="col" id="adj-match-1-4"></div>
+                </div>
+                <div class="row" id="adj-match-2">
+                    <div class="col" id="adj-match-2-1">Cowboys</div>
+                    <div class="col" id="adj-match-2-2">Packers</div>
+                    <div class="col" id="adj-match-2-3"></div>
+                    <div class="col" id="adj-match-2-4"></div>
+                </div>
+            </div>
+            
+          </div>
+          <div class="row">
+            <div class="col"><hr /></div>
+          </div>
+          <div class="row">
+            
+            <div class="col">
+                <div class="alert alert-secondary" role="alert" style="display: none;" id="faveteam"></div>
+            </div>    
+            <div class="col-sm">
+                <div class="alert alert-secondary" role="alert" style="display: none;" id="demomode"></div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+                <div class="alert alert-info" role="alert" style="display: none;" id="demoInfo">
+                
+                </div>
+            </div> 
+
+          </div>
+    </div>
+   
+      
+    
+</body>
+</html>

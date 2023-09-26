@@ -1,0 +1,10 @@
+/* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#b3dced+0,29b8e5+69,bce0ee+100 */
+body {
+    background: linear-gradient(to bottom, #b3dced 0%,#29b8e5 69%,#bce0ee 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+}
+
+.theContainer {
+    background-color: #cccccc;
+    margin-left: 25px;
+    margin-top: 10px;
+    }
