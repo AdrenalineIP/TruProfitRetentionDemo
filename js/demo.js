@@ -202,7 +202,7 @@ function fireOnReady() {
     theElement.innerHTML = '';
     theElement.style.display = 'none';
     let thisOdd = odds[currIndex];
-    if(thisOdd === null) {
+    if(thisOdd === null || thisOdd === undefined) {
         currIndex = 0;
         thisOdd = odds[currIndex];
     }
@@ -247,7 +247,8 @@ function fireOnReady() {
     }
     let demoText = "";
     if(demoMode == "xbets") {
-        demoText = "Currently, the simulation is showing a certain number of bets available at a certain boost price (currently set at "+currBoost+")";
+        const boost = (Math.round(currBoost * 100) / 100).toFixed(2);
+        demoText = "Currently, the simulation is showing a certain number of bets available at a certain boost price (currently set at "+boost+")";
     }
 
     if(demoText !== "") {
