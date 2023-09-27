@@ -268,7 +268,7 @@ let userodds3 = [
         }
     ];       
 const odds = [
-    
+    userOdds6,
     userOdds1,
     userodds3,
     userOdds3,
@@ -403,11 +403,11 @@ function fireOnReady() {
         let odds3 = theOdd['odds3'];
 
         let vig = 0;
-        vig += (1/odds1);
+        vig += (1/(odds1*1));
         if(odds2 !== null) {
-            vig += (1/odds2);
+            vig += (1/(odds2*1));
         }
-        vig += (1/odds3);
+        vig += (1/(odds3*1));
 
         vig *= 100;
         vig = (Math.round(vig * 100) / 100).toFixed(2);
