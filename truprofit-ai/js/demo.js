@@ -546,11 +546,11 @@ function processAdjustment(odd1, odd2, odd3) {
         // it's a 2 way bet
         const odd1prob = 1 / odd1;
         if(odd1prob >= 50) {
-            odd1 = (odd1 * 1) - currBoost;
-            odd3 = (odd3 * 1) + currBoost;
+            odd1 = (odd1 * 1) + currThreeBoost;
+            odd3 = (odd3 * 1) - currThreeBoost;
         } else {
-            odd1 = (odd1 * 1) + currBoost;
-            odd3 = (odd3 * 1) - currBoost;
+            odd1 = (odd1 * 1) - currThreeBoost;
+            odd3 = (odd3 * 1) + currThreeBoost;
         }
         console.log("odd1 is "+odd1+" odd2 is "+odd2+" and odd3 is "+odd3);
         odd1 = (Math.round(odd1 * 100) / 100).toFixed(2);
