@@ -481,6 +481,7 @@ function fireOnReady() {
             $('#adj-match-'+j+'-3').css("background-color", "#cccccc");
             $('#adj-match-'+j+'-5').text(odds3);
             $('#adj-match-'+j+'-5').css("background-color", "#cccccc");
+            $('#adj-match-'+j+'-6').css("background-color", "#cccccc");
             if(odds2 != null) {
                 $('#adj-match-'+j+'-4').text(odds2);
                 $('#adj-match-'+j+'-4').css("background-color", "#cccccc");
