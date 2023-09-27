@@ -3,10 +3,22 @@ body {
     background: linear-gradient(to bottom, #b3dced 0%,#29b8e5 69%,#bce0ee 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 }
 
+h1 {
+    font-size: 2.1em;
+}
+
+h2 {
+    font-size: 1.8em;
+}
+
+h3 {
+    font-size: 1.5em;
+}
+
 .theContainer {
     background-color: #cccccc;
-    margin-left: 25px;
-    margin-top: 10px;
+    margin-left: 5em;
+    margin-top: 1em;
 }
 
 .hasBorder {
