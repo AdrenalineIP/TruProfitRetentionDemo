@@ -268,10 +268,7 @@ let userodds3 = [
         }
     ];       
 const odds = [
-    userOdds6,
-    userOdds7,
-    userOdds9,
-    userOdds10,
+    
     userOdds1,
     userodds3,
     userOdds3,
@@ -286,6 +283,10 @@ const odds = [
     userOdds3,
     userOdds4,
     userOdds1,
+    userOdds6,
+    userOdds7,
+    userOdds9,
+    userOdds10,
     userOdds6,
     userOdds7,
     userOdds8,
@@ -389,17 +390,38 @@ function fireOnReady() {
     // show the odds
     let hasOdds2 = false;
     let hasAdjust = false;
+    
     for(let j = 0; j < thisOdd.length; j++) {
         const theOdd = thisOdd[j];
         
         //console.log("We have "+theOdd['away']+' @ '+theOdd['home']+' with 1='+theOdd['odds1']+' and 2='+theOdd['odds3']);
-        var team1 = $('#match-'+j+'-1').text();
-        var team2 = $('#match-'+j+'-2').text();
+        var team1 = theOdd['home'];
+        var team2 = theOdd['away'];
         //console.log('team1='+team1);
         let odds1 = theOdd['odds1'];
         let odds2 = theOdd['odds2'];
         let odds3 = theOdd['odds3'];
-        
+
+        let vig = 0;
+        vig += (1/odds1);
+        if(odds2 !== null) {
+            vig += (1/odds2);
+        }
+        vig += (1/odds3);
+
+        vig *= 100;
+        vig = (Math.round(vig * 100) / 100).toFixed(2);
+
+        let vig2 = 0;
+        vig2 += (1/odds1);
+        if(odds2 !== null) {
+            vig2 += (1/odds2);
+        }
+        vig2 += (1/odds3);
+
+        vig2 *= 100;
+        vig2 = (Math.round(vig * 100) / 100).toFixed(2);
+
         let odds1adj = odds1;
         let odds3adj = odds3;
         let odds2adj = odds2;
@@ -411,6 +433,8 @@ function fireOnReady() {
 
         $('#match-'+j+'-3').text(odds1);
         $('#match-'+j+'-5').text(odds3);
+        $('#match-'+j+'-6').text(vig);
+        $('#adj-match-'+j+'-6').text(vig);
         $('#match-'+j+'-1').text(theOdd['home']);
         $('#match-'+j+'-2').text(theOdd['away']);
         $('#adj-match-'+j+'-1').text(theOdd['home']);
@@ -428,8 +452,8 @@ function fireOnReady() {
             $('#match-'+j+'-4').hide();
             $('#adj-match-'+j+'-4').hide();
         }
-
-        if(team1 == myTeam || team2 == myTeam) {
+        console.log("++ checking "+myTeam+" with "+team1+" and "+team2);
+        if(team1 === myTeam || team2 === myTeam) {
             hasAdjust = true;
             newInfo = processAdjustment(odds1, odds2, odds3);
             console.dir(newInfo);
@@ -447,6 +471,7 @@ function fireOnReady() {
             //$('#adj-match-'+j+'-3').text(odds1adj);
             animator('#adj-match-'+j+'-3');
             animator('#adj-match-'+j+'-5');
+            animator('#adj-match-'+j+'-6');
             if(odds2 != null) {
                 setAdjustedOdds('#adj-match-'+j+'-4', odds2adj, odds2);
                 animator('#adj-match-'+j+'-4');
@@ -493,7 +518,7 @@ function fireOnReady() {
     rotate = setTimeout(function() {
         //Your stuff
         callback();
-    }, 2500);
+    }, 7500);
 }
 
 function schemeChoose(chosenMode) {

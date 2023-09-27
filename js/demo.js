@@ -385,8 +385,8 @@ function fireOnReady() {
     for(let j = 0; j < thisOdd.length; j++) {
         const theOdd = thisOdd[j];
         console.log("We have "+theOdd['away']+' @ '+theOdd['home']+' with 1='+theOdd['odds1']+' and 2='+theOdd['odds3']);
-        var team1 = $('#match-'+j+'-1').text();
-        var team2 = $('#match-'+j+'-2').text();
+        var team1 = theOdd['home'];
+        var team2 = theOdd['away'];
         console.log('team1='+team1);
         let odds1 = theOdd['odds1'];
         let odds2 = theOdd['odds2'];
@@ -489,7 +489,7 @@ function fireOnReady() {
     rotate = setTimeout(function() {
         //Your stuff
         callback();
-    }, 2500);
+    }, 7500);
 }
 
 function callback() {
