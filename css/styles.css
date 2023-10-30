@@ -24,3 +24,7 @@ h3 {
 .hasBorder {
     border: 1px solid black;
 }
+
+.betsLeft {
+    text-align: center;
+}

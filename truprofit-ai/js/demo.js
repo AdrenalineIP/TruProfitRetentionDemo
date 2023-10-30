@@ -615,7 +615,10 @@ function setAdjustedOdds(theElement, theOddsShown, oldOdds) {
                 }
             }
         }
-        theOddsShown = numBetsLeft+" bets left at "+theOddsShown;
+        //theOddsShown = numBetsLeft+" bets left at "+theOddsShown;
+        theOddsShown = '<div class="row"><div class="col-sm justify-content-center">';
+        theOddsShown += '<div class="row"><div class="betsLeft">'+numBetsLeft+' bets left at '+'</div><div class="clear"/><div class="betsLeft">'+odds+'</div></div>';
+        theOddsShown += '</div></div>';
     } else if(demoMode == "banner") {
         theOddsShown = "<strike>"+oldOdds+"</strike>&nbsp;"+theOddsShown;
     } else if(demoMode == "crossedout") {

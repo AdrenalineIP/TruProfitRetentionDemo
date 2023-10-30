@@ -523,8 +523,8 @@ function setAdjustedOdds(theElement, theOddsShown, oldOdds) {
         let odds = theOddsShown;
         //theOddsShown = numBetsLeft+" bets left at "+theOddsShown;
         theOddsShown = '<div class="row"><div class="col-sm justify-content-center">';
-        theOddsShown += '<div class="row"><div class="col-sm justify-content-center">'+numBetsLeft+' bets left at '+'</div></div>';
-        theOddsShown += '<div class="row"><div class="col-sm justify-content-center">'+odds+'</div></div>';
+        theOddsShown += '<div class="row"><div class="betsLeft">'+numBetsLeft+' bets left at '+'</div><div class="clear"/><div class="betsLeft">'+odds+'</div></div>';
+        //theOddsShown += '<div class="row"><div class="col-sm justify-content-center betsLeft">'+odds+'</div></div>';
         theOddsShown += '</div></div>';
     } else if(demoMode == "banner") {
         theOddsShown = "<strike>"+oldOdds+"</strike>&nbsp;"+theOddsShown;
