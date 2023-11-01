@@ -299,7 +299,6 @@ const odds = [
     userOdds9,
     userOdds10
     ];
-console.dir(odds);
 const globalRegex = new RegExp('(\\w+) \@ (\\w+)');
 const oddsRegex = new RegExp('^(\\d+\.\\d+)$', 'g');
 let lastCol = null;
@@ -328,10 +327,7 @@ function changeTeam() {
 
 function fireDocReady() {
     setMyTeam(myTeam);
-
-    console.log("before fireReady");
     fireOnReady();
-    console.log("DocReady");
 }
 
 function setMyTeam(teamName) {
@@ -370,7 +366,6 @@ function modeChoose(theMode) {
 }
 
 function fireOnReady() {
-    console.log("ON READY : "+myTeam);
     var theElement = document.getElementById('odds');
     theElement.innerHTML = '';
     theElement.style.display = 'none';
@@ -384,10 +379,8 @@ function fireOnReady() {
     let hasAdjust = false;
     for(let j = 0; j < thisOdd.length; j++) {
         const theOdd = thisOdd[j];
-        console.log("We have "+theOdd['away']+' @ '+theOdd['home']+' with 1='+theOdd['odds1']+' and 2='+theOdd['odds3']);
         var team1 = theOdd['home'];
         var team2 = theOdd['away'];
-        console.log('team1='+team1);
         let odds1 = theOdd['odds1'];
         let odds2 = theOdd['odds2'];
         let odds3 = theOdd['odds3'];
@@ -403,13 +396,17 @@ function fireOnReady() {
 
         $('#match-'+j+'-3').text(odds1);
         $('#match-'+j+'-5').text(odds3);
+        $('#match-'+j+'-3').show();
+        $('#match-'+j+'-5').show();
         $('#match-'+j+'-1').text(theOdd['home']);
         $('#match-'+j+'-2').text(theOdd['away']);
         $('#adj-match-'+j+'-1').text(theOdd['home']);
         $('#adj-match-'+j+'-2').text(theOdd['away']);
+        $('#adj-match-'+j+'-3').show();
+        $('#adj-match-'+j+'-5').show();
         if(odds2 !== null) {
             
-            odds2 = (Math.round(odds2 * 100) / 100).toFixed(2); 
+            odds2 = (Math.round(odds2 * 100) / 100).toFixed(2);
             $('#match-'+j+'-4').text(odds2);
             $('#match-'+j+'-4').show();
             $('#match-hd-4').show();
@@ -424,11 +421,12 @@ function fireOnReady() {
             hasAdjust = true;
             odds1adj += currBoost;
             setAdjustedOdds('#adj-match-'+j+'-3', odds1adj, odds1)
-            //$('#adj-match-'+j+'-3').text(odds1adj);
             animator('#adj-match-'+j+'-3');
         } else {
             $('#adj-match-'+j+'-3').text(odds1);
+            
             $('#adj-match-'+j+'-3').css("background-color", "#cccccc");
+            $('#adj-match-'+j+'-3').show();
         }
         if(team2 == myTeam) {
             hasAdjust = true;
@@ -439,6 +437,7 @@ function fireOnReady() {
         } else {
             $('#adj-match-'+j+'-5').text(odds3);
             $('#adj-match-'+j+'-5').css("background-color", "#cccccc");
+            $('#adj-match-'+j+'-3').show();
         }
         if(odds2 !== null && (team2 == myTeam || team1 == myTeam) ) {
             odds2adj += currBoost;
@@ -449,11 +448,13 @@ function fireOnReady() {
             $('#adj-match-'+j+'-4').text(odds2);
             $('#adj-match-'+j+'-4').css("background-color", "#cccccc");
             //$('#adj-match-'+j+'-3').text(odds1adj);
+            $('#adj-match-'+j+'-4').show();
         } else {
             $('#match-'+j+'-4').text("");
             $('#match-'+j+'-4').css("background-color", "#cccccc");
             $('#adj-match-'+j+'-4').text("");
             $('#adj-match-'+j+'-4').css("background-color", "#cccccc");
+            $('#adj-match-'+j+'-4').hide();
         }
         if(odds2 !== null && (team2 == myTeam || team1 == myTeam) ) {
             setAdjustedOdds('#adj-match-'+j+'-4', odds2adj, odds2)
@@ -521,11 +522,11 @@ function setAdjustedOdds(theElement, theOddsShown, oldOdds) {
             }
         }
         let odds = theOddsShown;
-        //theOddsShown = numBetsLeft+" bets left at "+theOddsShown;
-        theOddsShown = '<div class="row"><div class="col-sm justify-content-center">';
-        theOddsShown += '<div class="row"><div class="betsLeft">'+numBetsLeft+' bets left at '+'</div><div class="clear"/><div class="betsLeft">'+odds+'</div></div>';
-        //theOddsShown += '<div class="row"><div class="col-sm justify-content-center betsLeft">'+odds+'</div></div>';
-        theOddsShown += '</div></div>';
+        theOddsShown = '<div class="row">';
+        theOddsShown += '<div class="row"><div class="betsLeft">'+numBetsLeft+' bets left at ';
+        theOddsShown += odds+'</div>';
+        //theOddsShown += '<div class="clear"/><div class="betsLeft">'+odds+'</div></div>';
+        theOddsShown += '</div>';
     } else if(demoMode == "banner") {
         theOddsShown = "<strike>"+oldOdds+"</strike>&nbsp;"+theOddsShown;
     } else if(demoMode == "crossedout") {
